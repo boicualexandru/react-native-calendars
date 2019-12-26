@@ -161,7 +161,7 @@ class Calendar extends Component {
       state = 'disabled';
     } else if ((minDate && !dateutils.isGTE(day, minDate)) || (maxDate && !dateutils.isLTE(day, maxDate))) {
       state = 'disabled';
-    } else if (disabledRanges && disabledRanges.some(range => isWithinRange(day, range))) {
+    } else if (this.props.disabledRanges && this.props.disabledRanges.some(range => isWithinRange(day, range))) {
       state = 'disabled';
     } else if (!dateutils.sameMonth(day, this.state.currentMonth)) {
       state = 'disabled';
