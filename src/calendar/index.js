@@ -70,6 +70,8 @@ class Calendar extends Component {
     hideDayNames: PropTypes.bool,
     /** Disable days by default. Default = false */
     disabledByDefault: PropTypes.bool,
+    /** Disable ranges of dates. */
+    disabledRanges: PropTypes.any,
     /** Show week numbers. Default = false */
     showWeekNumbers: PropTypes.bool,
     /** Handler which gets executed when press arrow icon left. It receive a callback can go back month */
@@ -158,6 +160,8 @@ class Calendar extends Component {
     if (this.props.disabledByDefault) {
       state = 'disabled';
     } else if ((minDate && !dateutils.isGTE(day, minDate)) || (maxDate && !dateutils.isLTE(day, maxDate))) {
+      state = 'disabled';
+    } else if (disabledRanges && disabledRanges.some(range => isWithinRange(day, range))) {
       state = 'disabled';
     } else if (!dateutils.sameMonth(day, this.state.currentMonth)) {
       state = 'disabled';

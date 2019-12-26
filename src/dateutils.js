@@ -21,6 +21,10 @@ function isLTE(a, b) {
   return a.diffDays(b) > -1;
 }
 
+function isWithinRange(a, range) {
+  return isGTE(a, range.start) && isLTE(a, range.end);
+}
+
 function fromTo(a, b) {
   const days = [];
   let from = +a, to = +b;
@@ -88,5 +92,6 @@ module.exports = {
   page,
   fromTo,
   isLTE,
-  isGTE
+  isGTE,
+  isWithinRange
 };
